@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polls</title>
+</head>
+<body>
+
+  <header></header>
+
+  <main>
+
+      <h1 style="text-align: center">{{ 'Premios Platzi App' }}</h1>
+      {% if latest_question_list %}
+          <ul style="display: flex; flex-direction: column; align-items: center;">
+            {% for question in latest_question_list %}
+                <fieldset style="list-style: none; text-align: center; width: 30vw">
+                  <li>
+                      <a href=" {% url 'apps.polls:detail' question.id %} " style="text-decoration: none;">
+                          <h3>{{ question.question_text }}</h3>
+                      </a>
+                  </li>
+                </fieldset>
+                <br>
+            {% endfor %}
+          </ul>
+      {% else %}
+          <legend><p>No data available</p></legend>
+      {% endif %}
+
+  </main>
+
+  <footer></footer>
+
+</body>
+
+</html>
+
+
+

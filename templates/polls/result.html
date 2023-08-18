@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header></header>
+
+    <main>
+      <fieldset
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 35vw;
+          margin: auto;
+        "
+      >
+        <legend><h1>{{ question.question_text }}</h1></legend>
+        <ul style="width: 50%; padding: 0px">
+          {% for choice in question.choice_set.all %}
+          <li
+            style="
+              width: 100%;
+              display: flex;
+              flex-direction: row;
+              justify-content: space-between;
+              line-height: 1.5rem;
+            "
+          >
+            <span>{{ choice.choice_text }}:</span>
+            <span>{{ choice.votes }} vote{{ choice.votes|pluralize }}</span>
+          </li>
+          {% endfor %}
+        </ul>
+      </fieldset>
+      <br />
+      <fieldset
+        style="
+          text-align: center;
+          width: 35vw;
+          margin: auto;
+          padding: 0rem 1rem;
+        "
+      >
+        <h3>
+          <a
+            href=" {% url 'apps.polls:detail' question.id %} "
+            style="text-decoration: none"
+          >
+            ¿Quieres votar nuevamente?
+          </a>
+        </h3>
+      </fieldset>
+      <br />
+      <fieldset
+        style="
+          text-align: center;
+          width: 35vw;
+          margin: auto;
+          padding: 0rem 1rem;
+        "
+      >
+        <h3>
+          <a href=" {% url 'apps.polls:index' %} " style="text-decoration: none">
+            ¿Quieres ir al Inicio?
+          </a>
+        </h3>
+      </fieldset>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>

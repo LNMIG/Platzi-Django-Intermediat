@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <header></header>
+
+    <main>
+      <form
+        action="{% url 'apps.polls:vote' question.id %}"
+        method="post"
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 35vw;
+          margin: auto;
+        "
+      >
+        {% csrf_token %}
+        <fieldset style="width: 100%; text-align: center">
+          <legend><h1>{{ question.question_text }}</h1></legend>
+          {% if error_message %}
+          <p><strong>{{ error_message }}</strong></p>
+          {% endif %} {% for choice in question.choice_set.all %}
+          <span style="display: flex; flex-direction: row; align-items: left">
+            <input
+              type="radio"
+              name="choice"
+              id="choice{{ forloop.counter}}"
+              value="{{ choice.id }}"
+              style="cursor: pointer"
+            />
+            <label for="choice{{ forloop.counter}}" style="cursor: pointer"
+              >{{ choice.choice_text }}</label
+            >
+          </span>
+          <br />
+          {% endfor %}
+        </fieldset>
+
+        <br />
+
+        <fieldset style="width: 100%; text-align: center">
+          <input
+            type="submit"
+            value="Votar"
+            style="
+              border: none;
+              background: none;
+              font-size: 1.5rem;
+              font-weight: bold;
+              cursor: pointer;
+            "
+          />
+        </fieldset>
+      </form>
+    </main>
+
+    <footer></footer>
+  </body>
+</html>
