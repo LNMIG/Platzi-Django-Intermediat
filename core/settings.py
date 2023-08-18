@@ -41,8 +41,6 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-# THIRD_APPS = ()
-
 LOCAL_APPS = [
     'apps.polls.apps.PollsConfig',
 ]
